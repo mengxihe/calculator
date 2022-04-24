@@ -1,2 +1,2 @@
 # calculator
-A calculator web app
+A sleek calculator web app
