@@ -13,10 +13,10 @@
     </div>
     <div class="calculator">
         <div class="output">
-            <div class = "previous-operand"></div>
-            <div class = "current-operand"></div>
+            <div class = "previous-operand">123 +</div>
+            <div class = "current-operand">456</div>
         </div>
-        <div class="digits">
+        <div class="keys">
             <button class="9">9</button>
             <button class="8">8</button>
             <button class="7">7</button>
@@ -27,16 +27,14 @@
             <button class="2">2</button>
             <button class="1">1</button>
             <button class="0">0</button>
+            <button class="operator" data-action="add">+</button>
+            <button class="operator" data-action="subtract">-</button>
+            <button class="operator" data-action="multiply">*</button>
+            <button class="operator" data-action="divide">/</button>
+            <button class="operator" data-action="equals">=</button>
+            <button data-action = "decimal">.</button>
+            <button data-action = "clear">AC</button>
         </div>
-        <div class="operators">
-            <button class="add">+</button>
-            <button class="subtract">-</button>
-            <button class="multiply">*</button>
-            <button class="divide">/</button>
-            <button class="equal">=</button>
-        </div>
-
-        <button class="clear">Clear</button>
     </div>
     <script src = "script.js"></script>
 </body>
