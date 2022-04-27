@@ -35,3 +35,18 @@ const operate = (operator, a, b) => {
 
 console.log(operate(divide, 4, 3));
 
+calculator = document.querySelector('.calculator');
+keys = calculator.querySelector('.keys');
+
+keys.addEventListener('click', e=>{
+    if(e.target.matches('button')){
+        //Do something
+        const key = e.target;
+        console.log(e.target)
+        const action = key.dataset.action;
+        if(!action) {
+            console.log('number key')
+        }
+    }
+})
+
