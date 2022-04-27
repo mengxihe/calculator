@@ -56,6 +56,15 @@ keys.addEventListener('click', e=>{
         ) {
             console.log('operator key!');
         }
+        if (action ==='decimal') {
+            console.log('decimal key');
+        }
+        if (action === 'clear') {
+            console.log('clear key');
+        }
+        if (action === 'equal') {
+            console.log('equal key');
+        }
     }
 })
 
