@@ -84,6 +84,7 @@ keys.addEventListener('click', e=>{
             console.log('equal key');
             const secondValue = displayedNum
         }
+        //things
         Array.from(key.parentNode.children).forEach(k => k.classList.remove('is-depressed'));
     }
 })
