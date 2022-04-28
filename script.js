@@ -45,15 +45,20 @@ keys.addEventListener('click', e=>{
     if(e.target.matches('button')){
         const key = e.target;
         // console.log(key);
+        
+
+        console.log(key.parentNode.children);
         const action = key.dataset.action;
         const keyContent = key.textContent;
         const displayedNum = display.textContent;
+        const previousKeyType = calculator.dataset.previousKeyType;
         if(!action) {
             console.log('number key')
-            if(displayedNum === '0') {
+            if(displayedNum === '0' || previousKeyType === 'operator') {
                 display.textContent = keyContent;
             } else {
                 display.textContent = displayedNum + keyContent;
+                
             }
         }
         if (
@@ -63,16 +68,23 @@ keys.addEventListener('click', e=>{
             action === 'divide'
         ) {
             console.log('operator key!');
+            key.classList.add('is-depressed');
+            calculator.dataset.previousKeyType = 'operator';
+            calculator.dataset.firstValue = displayedNum
+            calculator.dataset.operator = action
         }
         if (action ==='decimal') {
             console.log('decimal key');
+            display.textContent = displayedNum + '.';
         }
         if (action === 'clear') {
             console.log('clear key');
         }
         if (action === 'equal') {
             console.log('equal key');
+            const secondValue = displayedNum
         }
+        Array.from(key.parentNode.children).forEach(k => k.classList.remove('is-depressed'));
     }
 })
 
