@@ -14,10 +14,6 @@ const divide = (a, b) => {
     return a/b;
 }
 
-// console.log(add(2, 8));
-// console.log(subtract(3, 1));
-// console.log(multiply(3, 3));
-// console.log(divide(3, 2));
 const operate = (operator, a, b) => {
     if (operator === add){
         return add(a, b);
@@ -33,59 +29,49 @@ const operate = (operator, a, b) => {
     }
 }
 
-// console.log(operate(divide, 4, 3));
-
-const calculator = document.querySelector('.calculator');
-const keys = calculator.querySelector('.keys');
-
-const display = document.querySelector('.display')
-// console.log(display.textContent);
-
-keys.addEventListener('click', e=>{
-    if(e.target.matches('button')){
+const buttonClick = (e) =>{
+    if (e.target.matches('button')){
         const key = e.target;
-        // console.log(key);
-        
-
-        console.log(key.parentNode.children);
         const action = key.dataset.action;
         const keyContent = key.textContent;
         const displayedNum = display.textContent;
-        const previousKeyType = calculator.dataset.previousKeyType;
         if(!action) {
-            console.log('number key')
-            if(displayedNum === '0' || previousKeyType === 'operator') {
+            console.log('number key');
+            if(displayedNum === '0') {
                 display.textContent = keyContent;
             } else {
                 display.textContent = displayedNum + keyContent;
-                
+                console.log(display.textContent);
             }
         }
-        if (
-            action ==='add' ||
+        if(
+            action === 'add' ||
             action === 'subtract' ||
             action === 'multiply' ||
             action === 'divide'
         ) {
-            console.log('operator key!');
-            key.classList.add('is-depressed');
-            calculator.dataset.previousKeyType = 'operator';
-            calculator.dataset.firstValue = displayedNum
-            calculator.dataset.operator = action
+            console.log('operator key');
         }
-        if (action ==='decimal') {
+        if (action === 'decimal') {
             console.log('decimal key');
             display.textContent = displayedNum + '.';
         }
         if (action === 'clear') {
             console.log('clear key');
+            display.textContent = '0';
         }
-        if (action === 'equal') {
+        if (action === 'calculate') {
             console.log('equal key');
-            const secondValue = displayedNum
         }
-        //things
-        Array.from(key.parentNode.children).forEach(k => k.classList.remove('is-depressed'));
+        Array.from(key.parentNode.children)
+        .forEach(k => k.classList.remove('is-depressed'));
     }
-})
+}
 
+
+const calculator = document.querySelector('.calculator');
+const keys = calculator.querySelector('.calculator__keys');
+const display = calculator.querySelector('.calculator__display');
+// console.log(display)
+
+keys.addEventListener('click', buttonClick);
