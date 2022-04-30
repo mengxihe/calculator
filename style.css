@@ -4,6 +4,7 @@
     --primary-light: white;
     --secondary-light: rgb(181, 181, 181);
     --yellow: rgb(255, 170, 0);
+    --green: rgb(40, 255, 40);
 }
 
 *,
@@ -78,6 +79,11 @@ button:hover{
     padding: 1rem;
     margin-bottom: 15px;
     /* background-color: var(--secondary-light); */
+}
+
+/* .calculator__keys > *:active::before, */
+.pressed {
+    background-color: var(--green);
 }
 
 .key--equal {
