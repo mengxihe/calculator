@@ -3,15 +3,15 @@ const add = (a, b) => {
 }
 
 const subtract = (a, b) => {
-    return a-b;
+    return Number(a) - Number( b);
 }
 
 const multiply = (a, b) => {
-    return a*b;
+    return Number(a) * Number( b);
 }
 
 const divide = (a, b) => {
-    return a/b;
+    return Number(a) / Number( b);
 }
 
 const operate = (operator, a, b) => {
@@ -54,8 +54,6 @@ const buttonClick = (e) =>{
             else {
                 display.textContent = displayedNum + keyContent;
             }
-            // const previousDisplayedNum = display.textContent;
-            // console.log(previousDisplayedNum);
         }
         if(
             action === 'add' ||
@@ -64,30 +62,29 @@ const buttonClick = (e) =>{
             action === 'divide'
         ) {
             // console.log('operator key');
-            calculator.dataset.previousKeyType = 'operator'
+            calculator.dataset.previousKeyType = 'operator';
             calculator.dataset.firstNumber = display.textContent;
-            // console.log(firstNumber);
             calculator.dataset.operatorType = key.dataset.action;
         }
         if (action === 'decimal') {
-
+            console.log(previousKeyType)
             if (!display.textContent.includes('.')){
-            display.textContent = displayedNum + '.';
+                display.textContent = displayedNum + '.';
             }
+            if (previousKeyType === 'operator') {
+                display.textContent = '0.';
+            }
+            calculator.dataset.previousKeyType = 'decimal';
         }
         if (action === 'clear') {
-            console.log('clear key');
+            calculator.dataset.previousKeyType = 'clear'
             display.textContent = '0';
         }
         if (action === 'calculate') {
-            // console.log('equal key');
             calculator.dataset.previousKeyType = 'operator'
             secondNumber = display.textContent;
-            // firstNumber = Number(firstNumber);
-            // console.log(Number(firstNumber));
             console.log(secondNumber);
-            
-            console.log(operatorType)
+            console.log(operatorType);
             result = operate (operatorType, firstNumber, secondNumber);
             console.log(result);
             display.textContent = result;
