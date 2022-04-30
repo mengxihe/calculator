@@ -81,6 +81,8 @@ const buttonClick = (e) =>{
             display.textContent = '0';
         }
         if (action === 'calculate') {
+            // display.textContent = '0';
+            // display.textContent = keyContent;
             calculator.dataset.previousKeyType = 'operator'
             secondNumber = display.textContent;
             console.log(secondNumber);
