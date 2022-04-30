@@ -74,14 +74,13 @@ button:hover{
 .calculator__keys{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: 100%;
+    /* height: 100%; */
     grid-gap: 15px;
     padding: 1rem;
     margin-bottom: 15px;
     /* background-color: var(--secondary-light); */
 }
 
-/* .calculator__keys > *:active::before, */
 .pressed {
     background-color: var(--green);
 }
