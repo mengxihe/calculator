@@ -48,7 +48,7 @@ const buttonClick = (e) =>{
             calculator.dataset.previousKeyType = 'number'
             if(displayedNum === '0') {
                 display.textContent = keyContent;
-            } else if (previousKeyType === 'operator'){
+            } else if (previousKeyType === 'operator' || previousKeyType === 'calculate'){
                 display.textContent = keyContent;
             }
             else {
@@ -65,6 +65,19 @@ const buttonClick = (e) =>{
             calculator.dataset.previousKeyType = 'operator';
             calculator.dataset.firstNumber = display.textContent;
             calculator.dataset.operatorType = key.dataset.action;
+            const firstValue = calculator.dataset.firstValue;
+            const secondValue = displayedNum;
+            const currentOperator = calculator.dataset.currentOperator;
+            
+            if(firstValue && currentOperator && previousKeyType !== 'operator' && previousKeyType !=='calculate') {
+                const calcValue = operate (currentOperator, firstValue, secondValue);
+                display.textContent = calcValue;
+                calculator.dataset.firstValue = calcValue;
+            } else {
+                calculator.dataset.firstValue = displayedNum;
+            }
+            calculator.dataset.currentOperator = action;
+            
         }
         if (action === 'decimal') {
             console.log(previousKeyType)
@@ -77,16 +90,30 @@ const buttonClick = (e) =>{
             calculator.dataset.previousKeyType = 'decimal';
         }
         if (action === 'clear') {
+            if (key.textContent === 'AC') {
+                calculator.dataset.firstValue = '';
+                calculator.dataset.currentOperator = '';
+                calculator.dataset.previousKeyType = '';
+            }
             calculator.dataset.previousKeyType = 'clear'
-            display.textContent = '0';
+            display.textContent = 0;
         }
         if (action === 'calculate') {
-            calculator.dataset.previousKeyType = 'operator'
-            secondNumber = display.textContent;
+            let firstValue = calculator.dataset.firstValue;
+            const currentOperator = calculator.dataset.currentOperator;
+            let secondValue = displayedNum;
+            if (firstValue) {
+                if(previousKeyType === 'calculate') {
+                    firstValue = displayedNum;
+                    secondValue = calculator.dataset.modValue;
+                }
 
-            result = operate (operatorType, firstNumber, secondNumber);
-            console.log(result);
-            display.textContent = result;
+                display.textContent = operate (currentOperator, firstValue, secondValue);
+            }
+
+            calculator.dataset.modValue = secondValue;
+            calculator.dataset.previousKeyType = 'calculate';
+            
         }
     }
 }
