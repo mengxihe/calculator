@@ -39,7 +39,7 @@ const buttonClick = (e) =>{
         const displayedNum = display.textContent;
         const previousKeyType = calculator.dataset.previousKeyType;
 
-        Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
+        
         if(!action) {
             // console.log('number key');
             calculator.dataset.previousKeyType = 'number'
@@ -68,10 +68,14 @@ const buttonClick = (e) =>{
                 const calcValue = operate (currentOperator, firstValue, secondValue);
                 display.textContent = calcValue;
                 calculator.dataset.firstValue = calcValue;
+                Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
             } else {
                 calculator.dataset.firstValue = displayedNum;
             }
             calculator.dataset.currentOperator = action;
+            if (previousKeyType === 'operator'){
+                Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
+            }
             key.classList.add('pressed');
         }
 
@@ -102,6 +106,7 @@ const buttonClick = (e) =>{
             const currentOperator = calculator.dataset.currentOperator;
             let secondValue = displayedNum;
             console.log(firstValue);
+            Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
             if (firstValue) {
                 if(previousKeyType === 'calculate') {
                     firstValue = displayedNum;
