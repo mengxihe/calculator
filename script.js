@@ -99,6 +99,7 @@ const buttonClick = (e) =>{
             }
             calculator.dataset.previousKeyType = 'clear'
             display.textContent = 0;
+            Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
         }
 
         if (action === 'calculate') {
