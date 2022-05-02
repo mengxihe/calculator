@@ -41,7 +41,7 @@ const buttonClick = (e) =>{
 
         
         if(!action) {
-            // console.log('number key');
+            
             calculator.dataset.previousKeyType = 'number'
             if(displayedNum === '0') {
                 display.textContent = keyContent;
@@ -81,7 +81,7 @@ const buttonClick = (e) =>{
 
 
         if (action === 'decimal') {
-            // console.log(previousKeyType)
+            
             if (!display.textContent.includes('.')){
                 display.textContent = displayedNum + '.';
             }
@@ -127,6 +127,6 @@ const buttonClick = (e) =>{
 const calculator = document.querySelector('.calculator');
 const keys = calculator.querySelector('.calculator__keys');
 const display = calculator.querySelector('.calculator__display');
-// console.log(display)
+
 
 keys.addEventListener('click', buttonClick);
